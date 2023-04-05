@@ -1,29 +1,30 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:ecommerce_app/core/router/router.gr.dart';
 import 'package:ecommerce_app/home/presentation/widget/category_widget.dart';
 import 'package:ecommerce_app/home/presentation/widget/product_card.dart';
 import 'package:ecommerce_app/home/provider/provider_home.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-List<String> category = [
-  'men"s clothing',
-  "women's clothing",
-  'jewellry',
-  'electonics'
-];
-
-class HomeScreen extends HookConsumerWidget {
-  const HomeScreen({super.key});
+@RoutePage()
+class HomePage extends HookConsumerWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text('My Shop',style:TextStyle(color: Color.fromARGB(255, 46, 9, 180),fontWeight: FontWeight.bold)),
+        title: const Text('My Shop',
+            style: TextStyle(
+                color: Color.fromARGB(255, 46, 9, 180),
+                fontWeight: FontWeight.bold)),
         actions: [
           Center(
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  AutoRouter.of(context).push(const CartRoute());
+                },
                 icon: const Icon(
                   Icons.shopping_cart,
                   color: Colors.black,
@@ -46,16 +47,29 @@ class HomeScreen extends HookConsumerWidget {
             ),
           ),
           const SizedBox(height: 10),
-          SizedBox(
-            height: 30,
-            child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                itemCount: category.length,
-                itemBuilder: (context, index) {
-                  return CategoryWidget(category: category[index]);
-                }),
-          ),
+          HookConsumer(builder: (context, ref, child) {
+            final category = ref.watch(getCategoryProvider);
+            return category.when(
+                data: (data) {
+                  return SizedBox(
+                    height: 30,
+                    child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: data.length,
+                        itemBuilder: (context, index) {
+                          return CategoryWidget(
+                            category: data[index],
+                            selected: true,
+                          );
+                        }),
+                  );
+                },
+                error: (e, stacktree) {
+                  return Text(e.toString());
+                },
+                loading: () => Container());
+          }),
           const SizedBox(height: 10),
           HookConsumer(builder: (context, ref, child) {
             final products = ref.watch(getProductsProvider);
@@ -75,12 +89,24 @@ class HomeScreen extends HookConsumerWidget {
                           childAspectRatio: 130 / 193
                           // staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
                           ),
-                      itemBuilder: (BuildContext context, index) {
-                        return ProductCardWidget(
-                          imageUrl: data[index].image,
-                          title: data[index].title,
-                          price: data[index].price.toString(),
-                          rating: data[index].rating.rate!.toDouble(),
+                      itemBuilder: (itemcontext, index) {
+                        return InkWell(
+                          onTap: () {
+                            AutoRouter.of(context).push(
+                              ProductDetailsRoute(
+                                  imageUrl: data[index].image,
+                                  title: data[index].title,
+                                  price: data[index].price.toString(),
+                                  desc: data[index].description,
+                                  type: data[index].category),
+                            );
+                          },
+                          child: ProductCardWidget(
+                            imageUrl: data[index].image,
+                            title: data[index].title,
+                            price: data[index].price.toString(),
+                            rating: data[index].rating.rate!.toDouble(),
+                          ),
                         );
                       },
                     ),

@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app/core/constant/constant.dart';
@@ -15,6 +16,17 @@ class ServiceHome implements AbHome {
       final List<ProductModel> data = (response.data as List).map((e) {
         return ProductModel.fromJson(e);
       }).toList();
+      return data;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List> getCategory() async {
+    try {
+      final response = await dio.get('${baseUrl}products/categories');
+      List data = response.data as List;
       return data;
     } catch (e) {
       rethrow;

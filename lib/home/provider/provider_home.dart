@@ -13,3 +13,7 @@ ServiceHome serviceHome<AbHome>(ServiceHomeRef ref) {
 final getProductsProvider=  FutureProvider.autoDispose<List<ProductModel>>((ref) async {
   return ref.watch(serviceHomeProvider).getProducts();
 });
+
+final getCategoryProvider=  FutureProvider.autoDispose<List>((ref) async {
+  return ref.watch(serviceHomeProvider).getCategory();
+});
