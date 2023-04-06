@@ -65,7 +65,8 @@ class ProductCardWidget extends HookConsumerWidget {
             children: [
               Text('\$$price',
                   style: const TextStyle(
-                      color: Color.fromARGB(255, 29, 17, 187),
+                    color: Colors.blue,
+                      // color: Color.fromARGB(255, 29, 17, 187),
                       fontWeight: FontWeight.bold,
                       fontSize: 18)),
               Row(

@@ -8,25 +8,32 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:ecommerce_app/home/presentation/cart_page.dart' as _i3;
-import 'package:ecommerce_app/home/presentation/home_page.dart' as _i2;
+import 'package:auto_route/auto_route.dart' as _i5;
+import 'package:ecommerce_app/authentication/presentation/login.dart' as _i4;
+import 'package:ecommerce_app/home/presentation/cart_page.dart' as _i1;
+import 'package:ecommerce_app/home/presentation/home_page.dart' as _i3;
 import 'package:ecommerce_app/home/presentation/product_details_page.dart'
-    as _i1;
-import 'package:flutter/cupertino.dart' as _i6;
-import 'package:flutter/material.dart' as _i5;
+    as _i2;
+import 'package:flutter/cupertino.dart' as _i7;
+import 'package:flutter/material.dart' as _i6;
 
-abstract class $AppRouter extends _i4.RootStackRouter {
-  $AppRouter([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
+abstract class $AppRouter extends _i5.RootStackRouter {
+  $AppRouter([_i6.GlobalKey<_i6.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i4.PageFactory> pagesMap = {
+  final Map<String, _i5.PageFactory> pagesMap = {
+    CartRoute.name: (routeData) {
+      return _i5.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i1.CartPage(),
+      );
+    },
     ProductDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<ProductDetailsRouteArgs>();
-      return _i4.AutoRoutePage<dynamic>(
+      return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i1.ProductDetailsPage(
+        child: _i2.ProductDetailsPage(
           args.imageUrl,
           args.title,
           args.desc,
@@ -37,31 +44,47 @@ abstract class $AppRouter extends _i4.RootStackRouter {
       );
     },
     HomeRoute.name: (routeData) {
-      return _i4.AutoRoutePage<dynamic>(
+      final args =
+          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
+      return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.HomePage(),
+        child: _i3.HomePage(key: args.key),
       );
     },
-    CartRoute.name: (routeData) {
-      return _i4.AutoRoutePage<dynamic>(
+    LoginRoute.name: (routeData) {
+      return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.CartPage(),
+        child: const _i4.LoginPage(),
       );
     },
   };
 }
 
 /// generated route for
-/// [_i1.ProductDetailsPage]
-class ProductDetailsRoute extends _i4.PageRouteInfo<ProductDetailsRouteArgs> {
+/// [_i1.CartPage]
+class CartRoute extends _i5.PageRouteInfo<void> {
+  const CartRoute({List<_i5.PageRouteInfo>? children})
+      : super(
+          CartRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CartRoute';
+
+  static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i2.ProductDetailsPage]
+class ProductDetailsRoute extends _i5.PageRouteInfo<ProductDetailsRouteArgs> {
   ProductDetailsRoute({
     required String imageUrl,
     required String title,
     required String desc,
     required String price,
     required String type,
-    _i6.Key? key,
-    List<_i4.PageRouteInfo>? children,
+    _i7.Key? key,
+    List<_i5.PageRouteInfo>? children,
   }) : super(
           ProductDetailsRoute.name,
           args: ProductDetailsRouteArgs(
@@ -77,8 +100,8 @@ class ProductDetailsRoute extends _i4.PageRouteInfo<ProductDetailsRouteArgs> {
 
   static const String name = 'ProductDetailsRoute';
 
-  static const _i4.PageInfo<ProductDetailsRouteArgs> page =
-      _i4.PageInfo<ProductDetailsRouteArgs>(name);
+  static const _i5.PageInfo<ProductDetailsRouteArgs> page =
+      _i5.PageInfo<ProductDetailsRouteArgs>(name);
 }
 
 class ProductDetailsRouteArgs {
@@ -101,7 +124,7 @@ class ProductDetailsRouteArgs {
 
   final String type;
 
-  final _i6.Key? key;
+  final _i7.Key? key;
 
   @override
   String toString() {
@@ -110,29 +133,44 @@ class ProductDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i2.HomePage]
-class HomeRoute extends _i4.PageRouteInfo<void> {
-  const HomeRoute({List<_i4.PageRouteInfo>? children})
-      : super(
+/// [_i3.HomePage]
+class HomeRoute extends _i5.PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({
+    _i6.Key? key,
+    List<_i5.PageRouteInfo>? children,
+  }) : super(
           HomeRoute.name,
+          args: HomeRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'HomeRoute';
 
-  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
+  static const _i5.PageInfo<HomeRouteArgs> page =
+      _i5.PageInfo<HomeRouteArgs>(name);
+}
+
+class HomeRouteArgs {
+  const HomeRouteArgs({this.key});
+
+  final _i6.Key? key;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
-/// [_i3.CartPage]
-class CartRoute extends _i4.PageRouteInfo<void> {
-  const CartRoute({List<_i4.PageRouteInfo>? children})
+/// [_i4.LoginPage]
+class LoginRoute extends _i5.PageRouteInfo<void> {
+  const LoginRoute({List<_i5.PageRouteInfo>? children})
       : super(
-          CartRoute.name,
+          LoginRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CartRoute';
+  static const String name = 'LoginRoute';
 
-  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
+  static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
 }

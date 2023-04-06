@@ -7,8 +7,12 @@ class AppRouter extends $AppRouter {
   final List<AutoRoute> routes = [
     CustomRoute(
         path: '/',
-        page: HomeRoute.page,
+        page: LoginRoute.page,
         transitionsBuilder: TransitionsBuilders.fadeIn,
+        durationInMilliseconds: 500),
+    CustomRoute(
+        page: HomeRoute.page,
+        transitionsBuilder: TransitionsBuilders.slideRightWithFade,
         durationInMilliseconds: 500),
     CustomRoute(
         page: ProductDetailsRoute.page,
