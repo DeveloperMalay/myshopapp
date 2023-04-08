@@ -12,7 +12,7 @@ class ServiceHome implements AbHome {
   @override
   Future<List<ProductModel>> getProducts() async {
     try {
-      final response = await dio.get('${baseUrl}products');
+      final response = await dio.get('${baseUrl}products', queryParameters: {});
       final List<ProductModel> data = (response.data as List).map((e) {
         return ProductModel.fromJson(e);
       }).toList();
@@ -27,6 +27,19 @@ class ServiceHome implements AbHome {
     try {
       final response = await dio.get('${baseUrl}products/categories');
       List data = response.data as List;
+      return data;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<ProductModel>> getfilteredProducts(String category) async {
+    try {
+      final response = await dio.get('${baseUrl}products/category/$category');
+      final List<ProductModel> data = (response.data as List).map((e) {
+        return ProductModel.fromJson(e);
+      }).toList();
       return data;
     } catch (e) {
       rethrow;
