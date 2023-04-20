@@ -44,11 +44,9 @@ abstract class $AppRouter extends _i5.RootStackRouter {
       );
     },
     HomeRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i3.HomePage(key: args.key),
+        child: const _i3.HomePage(),
       );
     },
     LoginRoute.name: (routeData) {
@@ -134,31 +132,16 @@ class ProductDetailsRouteArgs {
 
 /// generated route for
 /// [_i3.HomePage]
-class HomeRoute extends _i5.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({
-    _i6.Key? key,
-    List<_i5.PageRouteInfo>? children,
-  }) : super(
+class HomeRoute extends _i5.PageRouteInfo<void> {
+  const HomeRoute({List<_i5.PageRouteInfo>? children})
+      : super(
           HomeRoute.name,
-          args: HomeRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'HomeRoute';
 
-  static const _i5.PageInfo<HomeRouteArgs> page =
-      _i5.PageInfo<HomeRouteArgs>(name);
-}
-
-class HomeRouteArgs {
-  const HomeRouteArgs({this.key});
-
-  final _i6.Key? key;
-
-  @override
-  String toString() {
-    return 'HomeRouteArgs{key: $key}';
-  }
+  static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
 }
 
 /// generated route for

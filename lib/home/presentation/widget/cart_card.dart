@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CartCard extends StatelessWidget {
-  const CartCard({super.key});
-
+  const CartCard({super.key, required this.amount});
+final int amount;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -66,8 +66,8 @@ class CartCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(100)),
                     child: const Icon(Icons.add),
                   ),
-                  const Text(
-                    '1',
+                   Text(
+                    amount.toString(),
                     style: TextStyle(fontSize: 20),
                   ),
                   Container(

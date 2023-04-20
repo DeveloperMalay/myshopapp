@@ -48,8 +48,9 @@ dependencies:
   flutter_cache_manager: ^3.3.0
   flutter_screenutil: ^5.7.0
   auto_route: ^6.0.5
-  fluttertoast: ^8.2.1
+  # fluttertoast: ^8.2.1
   lottie: ^2.3.2
+  animate_do: ^3.0.2
 
 dev_dependencies:
   flutter_test:

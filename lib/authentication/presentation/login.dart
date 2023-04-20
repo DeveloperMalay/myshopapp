@@ -135,7 +135,7 @@ class _LoginPageState extends State<LoginPage>
                     child: GlowingLoginButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          AutoRouter.of(context).push( HomeRoute());
+                          AutoRouter.of(context).push(HomeRoute());
                         } else {
                           shake();
                         }

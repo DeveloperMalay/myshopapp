@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:ecommerce_app/core/router/router.gr.dart';
 import 'package:ecommerce_app/home/presentation/widget/category_widget.dart';
@@ -179,11 +180,13 @@ class HomePage extends HookConsumerWidget  {
                                         type: data[index].category),
                                   );
                                 },
-                                child: ProductCardWidget(
-                                  imageUrl: data[index].image,
-                                  title: data[index].title,
-                                  price: data[index].price.toString(),
-                                  rating: data[index].rating.rate!.toDouble(),
+                                child: FadeInRight(
+                                  child: ProductCardWidget(
+                                    imageUrl: data[index].image,
+                                    title: data[index].title,
+                                    price: data[index].price.toString(),
+                                    rating: data[index].rating.rate!.toDouble(),
+                                  ),
                                 ),
                               );
                             },
