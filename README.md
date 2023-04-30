@@ -1,17 +1,22 @@
-# ecommerce_app
+# Shopping App
 
-A new Flutter project.
+A project using Riverpod State Management and fakestore api
 
-## Getting Started
+## About The Project
+It's a project on ecommerce app where you can see the different products and it's details.Also you can filter the data by cartegory
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+Packages I use in this app:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- I am using riverpod for state management
+- Freezed to create model class
+- Auto_route for navigation
+- flutter_screenutil for responsive design 
+- animate_do for adding animation
+- cached_network_image and flutter_cache_manager for image cacheing 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+Video Expample:
+
+
 
